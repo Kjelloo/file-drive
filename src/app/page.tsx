@@ -49,15 +49,6 @@ export default function Home() {
         router.push(`/?path=${newPath.join("/")}`)
     }
 
-    // Get the parent path for navigation
-    const getParentPath = () => {
-        if (currentPath.length <= 1) {
-            return "/"
-        }
-        const parentPath = currentPath.slice(0, -1)
-        return `/?path=${parentPath.join("/")}`
-    }
-
     // Helper function to find a folder in the nested structure
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const findFolderByPath = (path: string[], fileList: any[]): any => {
