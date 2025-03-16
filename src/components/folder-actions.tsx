@@ -37,7 +37,7 @@ export function FolderActions({ onCreateFolder }: FolderActionsProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button className="cursor-pointer" variant="outline">
           <FolderPlus className="mr-2 h-4 w-4" />
           New Folder
         </Button>

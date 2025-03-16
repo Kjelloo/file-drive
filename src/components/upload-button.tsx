@@ -31,7 +31,7 @@ export function UploadButton() {
 
   return (
     <>
-      <Button onClick={handleUploadClick} disabled={isUploading}>
+      <Button onClick={handleUploadClick} disabled={isUploading} className="cursor-pointer">
         <Upload className="mr-2 h-4 w-4" />
         {isUploading ? "Uploading..." : "Upload"}
       </Button>

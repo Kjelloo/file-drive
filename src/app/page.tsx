@@ -115,7 +115,7 @@ export default function Home() {
     // Build breadcrumb navigation
     const renderBreadcrumbs = () => {
         if (currentPath.length === 0) {
-            return <h1 className="text-2xl font-bold">My Drive</h1>
+            return <h1 className="text-2xl font-bold">Drive</h1>
         }
 
         return (
@@ -162,13 +162,13 @@ export default function Home() {
                 <div className="flex gap-2">
                     <button
                         onClick={() => setViewMode("grid")}
-                        className={`rounded-md p-2 ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
+                        className={`rounded-md p-2 cursor-pointer ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
                     >
                         Grid
                     </button>
                     <button
                         onClick={() => setViewMode("list")}
-                        className={`rounded-md p-2 ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
+                        className={`rounded-md p-2 cursor-pointer ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
                     >
                         List
                     </button>

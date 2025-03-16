@@ -47,8 +47,7 @@ export default function RootLayout({
                         </SheetContent>
                     </Sheet>
                     <Link href="/" className="flex items-center gap-2 font-semibold">
-                        <FileText className="h-6 w-6 text-blue-500" />
-                        <span>Drive Clone</span>
+                        <span>Filedrive</span>
                     </Link>
                 </div>
                 <div className="ml-auto flex items-center gap-4">
