@@ -10,6 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {ClerkProvider, SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 
+export const runtime = "edge";
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
