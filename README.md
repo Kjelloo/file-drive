@@ -7,7 +7,7 @@ ___
 #### TODO:
 
 - [x] Deploy application to Cloudflare pages.
-- [ ] Create the UI with mock data.
+- [x] Create the UI with mock data.
 - [ ] Make folder and file browsing possible.
 - [ ] Authentication with Clerk.
 - [ ] Database hookup with Drizzle ORM and Prisma.
