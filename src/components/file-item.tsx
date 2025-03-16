@@ -47,9 +47,7 @@ export function FileItem({ file, view, onFolderClick }: FileItemProps) {
   if (view === "grid") {
     return (
       <div
-        className={`flex flex-col items-center rounded-lg border p-4 transition-colors hover:bg-accent/50 ${
-          file.type === "folder" ? "cursor-pointer" : ""
-        }`}
+        className="flex flex-col items-center rounded-lg border p-4 transition-colors hover:bg-accent/50 cursor-pointer"
         onClick={handleClick}
       >
         {getFileIcon()}
@@ -63,7 +61,7 @@ export function FileItem({ file, view, onFolderClick }: FileItemProps) {
 
   return (
     <tr
-      className={`border-b transition-colors hover:bg-accent/50 ${file.type === "folder" ? "cursor-pointer" : ""}`}
+      className="border-b transition-colors hover:bg-accent/50 cursor-pointer"
       onClick={handleClick}
     >
       <td className="flex items-center gap-2 px-4 py-3">

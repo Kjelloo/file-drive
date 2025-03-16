@@ -144,38 +144,40 @@ export default function Home() {
     }
 
     return (
-        <div className="p-6">
-            <div className="mb-6 h-12 flex items-center justify-between">
-                <div>
-                    {renderBreadcrumbs()}
+        <>
+            <div className="p-6">
+                <div className="mb-6 h-12 flex items-center justify-between">
+                    <div>
+                        {renderBreadcrumbs()}
+                    </div>
+                    <div className="flex gap-2">
+                        <FolderActions onCreateFolder={createFolder}/>
+                        <UploadButton/>
+                    </div>
                 </div>
-                <div className="flex gap-2">
-                    <FolderActions onCreateFolder={createFolder} />
-                    <UploadButton />
-                </div>
-            </div>
 
-            <div className="mb-4 flex items-center justify-between">
-                <div className="text-sm text-muted-foreground">
-                    {displayedFiles.length} {displayedFiles.length === 1 ? "item" : "items"}
+                <div className="mb-4 flex items-center justify-between">
+                    <div className="text-sm text-muted-foreground">
+                        {displayedFiles.length} {displayedFiles.length === 1 ? "item" : "items"}
+                    </div>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => setViewMode("grid")}
+                            className={`rounded-md p-2 cursor-pointer ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
+                        >
+                            Grid
+                        </button>
+                        <button
+                            onClick={() => setViewMode("list")}
+                            className={`rounded-md p-2 cursor-pointer ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
+                        >
+                            List
+                        </button>
+                    </div>
                 </div>
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => setViewMode("grid")}
-                        className={`rounded-md p-2 cursor-pointer ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
-                    >
-                        Grid
-                    </button>
-                    <button
-                        onClick={() => setViewMode("list")}
-                        className={`rounded-md p-2 cursor-pointer ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
-                    >
-                        List
-                    </button>
-                </div>
-            </div>
 
-            <FileExplorer files={displayedFiles} viewMode={viewMode} onFolderClick={navigateToFolder} />
-        </div>
+                <FileExplorer files={displayedFiles} viewMode={viewMode} onFolderClick={navigateToFolder}/>
+            </div>
+        </>
     )
 }
