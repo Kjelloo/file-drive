@@ -18,13 +18,15 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en">
-        <ClerkProvider>
+        <html lang="en" suppressHydrationWarning>
+        <ClerkProvider
+            afterSignOutUrl="/sign-in"
+        >
             <body className={inter.className}>
             <SignedIn>
                 <div className="flex h-screen flex-col">
@@ -62,7 +64,7 @@ export default function RootLayout({
                                     className="w-64 rounded-full bg-muted pl-8 md:w-80"
                                 />
                             </form>
-                            <UserButton/>
+                            <UserButton />
                         </div>
                     </header>
                     <div className="flex flex-1">
@@ -82,7 +84,9 @@ export default function RootLayout({
                 </div>
             </SignedIn>
             <SignedOut>
-                {children}
+                <div className="h-screen w-screen">
+                    {children}
+                </div>
             </SignedOut>
             </body>
         </ClerkProvider>
