@@ -13,8 +13,8 @@ import {ClerkProvider, SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 const inter = Inter({subsets: ["latin"]})
 
 export const metadata: Metadata = {
-    title: "Google Drive Clone",
-    description: "A Google Drive clone built with Next.js and Tailwind CSS",
+    title: "Personal file drive",
+    description: "A personal file drive built with Next.js",
 }
 
 export default function RootLayout({
