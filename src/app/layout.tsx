@@ -8,10 +8,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { ClerkProvider, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
-export const dynamicParams = false;
-export const runtime = 'edge';
+import {ClerkProvider, SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,19 +18,13 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-    children,
-}: Readonly<{
+                                       children,
+                                   }: Readonly<{
     children: React.ReactNode
 }>) {
     return (
         <html lang="en">
-        <ClerkProvider 
-            appearance={{
-                elements: {
-                    footer: "hidden", // Hide the Clerk footer
-                }
-            }}
-        >
+        <ClerkProvider>
         <body className={inter.className}>
         <SignedIn>
             <div className="flex h-screen flex-col">
@@ -71,7 +62,7 @@ export default function RootLayout({
                                 className="w-64 rounded-full bg-muted pl-8 md:w-80"
                             />
                         </form>
-                        <UserButton afterSignOutUrl="/sign-in" />
+                        <UserButton />
                     </div>
                 </header>
                 <div className="flex flex-1">
