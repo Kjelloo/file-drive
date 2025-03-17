@@ -4,6 +4,7 @@
 
 Built with Next.js, Cloudflare Pages, AWS S3, Prisma & Clerk.
 ___
+
 #### TODO:
 
 - [x] Deploy application to Cloudflare pages.
