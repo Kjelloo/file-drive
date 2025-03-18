@@ -1,16 +1,8 @@
 import {FileItem} from "./file-item"
-
-interface File {
-    id: string
-    name: string
-    type: string
-    size?: string
-    modified: string
-    items?: File[]
-}
+import {DriveFile} from "@/db";
 
 interface FileExplorerProps {
-    files: File[]
+    files: DriveFile[]
     viewMode: "grid" | "list"
     onFolderClick: (id: string, name: string) => void
 }

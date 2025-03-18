@@ -1,27 +1,21 @@
 "use client"
 
-import {File, FileIcon as FilePresentation, FileImage, FileSpreadsheet, FileText, Folder} from "lucide-react"
+import {File, FileIcon as FilePresentation, FileImage, FileSpreadsheet, FileText} from "lucide-react"
+import {DriveFile} from "@/db";
 
 interface FileItemProps {
-    file: {
-        id: string
-        name: string
-        type: string
-        size?: string
-        modified: string
-        items?: unknown[]
-    }
+    file: DriveFile
     view: "grid" | "list"
     onFolderClick: (id: string, name: string) => void
 }
 
-export function FileItem({file, view, onFolderClick}: FileItemProps) {
+export function FileItem({file, view}: FileItemProps) {
     const getFileIcon = (size: "small" | "large" = "large") => {
         const iconSize = size === "small" ? "h-5 w-5" : "h-10 w-10"
 
         switch (file.type) {
-            case "folder":
-                return <Folder className={`${iconSize} text-blue-500`}/>
+            // case "folder":
+            //     return <Folder className={`${iconSize} text-blue-500`}/>
             case "pdf":
                 return <FileText className={`${iconSize} text-red-500`}/>
             case "docx":
@@ -39,9 +33,9 @@ export function FileItem({file, view, onFolderClick}: FileItemProps) {
     }
 
     const handleClick = () => {
-        if (file.type === "folder") {
-            onFolderClick(file.id, file.name)
-        }
+        // if (file.type === "folder") {
+        //     onFolderClick(file.id, file.name)
+        // }
     }
 
     if (view === "grid") {
@@ -53,7 +47,7 @@ export function FileItem({file, view, onFolderClick}: FileItemProps) {
                 {getFileIcon()}
                 <div className="mt-2 text-center">
                     <p className="font-medium line-clamp-1">{file.name}</p>
-                    <p className="text-xs text-muted-foreground">{file.modified}</p>
+                    {/*<p className="text-xs text-muted-foreground">{file.modified}</p>*/}
                 </div>
             </div>
         )
@@ -70,7 +64,7 @@ export function FileItem({file, view, onFolderClick}: FileItemProps) {
             </td>
             <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell">{file.type.toUpperCase()}</td>
             <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell">{file.size || "-"}</td>
-            <td className="px-4 py-3 text-sm text-muted-foreground">{file.modified}</td>
+            {/*<td className="px-4 py-3 text-sm text-muted-foreground">{file.modified}</td>*/}
         </tr>
     )
 }

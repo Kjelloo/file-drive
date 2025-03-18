@@ -15,3 +15,11 @@ ___
 - [ ] Enable file upload to an AWS S3 bucket.
 - [ ] File delete.
 - [ ] Folder creation & deletion.
+
+___
+
+#### Notes 18/03
+
+- [x] Fetch root files from db.
+- [ ] Fetch files at current path (other paths than root).
+- [ ] Fetch folders from db at current path.
