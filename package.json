@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:generate:dev": "drizzle-kit generate --config=drizzle-dev.config.ts",
+    "db:generate:prod": "drizzle-kit generate --config=drizzle-prod.config.ts",
+    "db:push": "drizzle-kit push --config=drizzle-dev.config.ts",
+    "db:push:prod": "drizzle-kit push --config=drizzle-prod.config.ts",
+    "db:studio": " drizzle-kit studio --config=drizzle-dev.config.ts",
+    "db:studio:prod": "drizzle-kit studio --config=drizzle-prod.config.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.5",
@@ -20,6 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.30.5",
     "drizzle-orm": "^0.40.1",
     "lucide-react": "^0.482.0",
     "next": "15.2.2",
@@ -35,7 +39,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "drizzle-kit": "^0.30.5",
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "tailwindcss": "^4",
