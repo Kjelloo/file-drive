@@ -1,6 +1,4 @@
-import { NextResponse } from 'next/server';
-import { currentUser, clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import type { NextRequest } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)']);
 
@@ -9,23 +7,6 @@ export default clerkMiddleware(async (auth, request) => {
         await auth.protect();
     }
 });
-
-// export async function middleware(req: NextRequest) {
-//     const user = await currentUser();
-//
-//     // Clone the headers
-//     const requestHeaders = new Headers(req.headers);
-//
-//     if (user) {
-//         requestHeaders.set('x-user-id', user.id);
-//     }
-//
-//     return NextResponse.next({
-//         request: {
-//             headers: requestHeaders,
-//         },
-//     });
-// }
 
 export const config = {
     matcher: [
