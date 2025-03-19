@@ -1,25 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import {auth} from "@clerk/nextjs/server";
-import {getFilesByPath, getFoldersByPath} from "@/db/queries/select";
+import { getFilesByPath, getFoldersByPath } from "@/db/queries/select";
+import { auth } from "@clerk/nextjs/server";
 
 export async function GET(req: NextRequest) {
     try {
-        const user = await auth();
-
-        if (!user.userId) {
+        const { userId } = await auth();
+        if (!userId) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
         const { searchParams } = new URL(req.url);
-        let path = searchParams.get('path');
-
-        if (path?.length == 0) {
-            path = null;
-        }
+        const path = searchParams.get('path') || null;
 
         const [files, folders] = await Promise.all([
-            getFilesByPath(user.userId, path),
-            getFoldersByPath(user.userId, path)
+            getFilesByPath(userId, path),
+            getFoldersByPath(userId, path)
         ]);
 
         return NextResponse.json({

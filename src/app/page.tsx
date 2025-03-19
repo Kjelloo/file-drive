@@ -21,11 +21,10 @@ export default function Home() {
     useEffect(() => {
         const fetchDriveItems = async () => {
             try {
-                const response = await fetch(`/api/drive?path=${pathParam}`);
+                const response = await fetch(`/api/drive?path=${pathParam || ''}`);
                 const data = await response.json();
                 
                 if (response.ok) {
-                    // Combine files and folders into a single array
                     setItems([...data.folders, ...data.files]);
                 } else {
                     console.error('Failed to fetch drive items:', data.error);
@@ -37,74 +36,11 @@ export default function Home() {
         fetchDriveItems();
     }, [pathParam]);
 
-    // Function to navigate into a folder
     const navigateToFolder = (folderId: string, folderName: string) => {
         const newPath = [...currentPath, folderName]
-        router.push(`/?path=${newPath.join("/")}`)
+        router.push(`/?path=${newPath.join("/")}`);
     }
 
-    // Helper function to find a folder in the nested structure
-    // const findFolderByPath = (path: string[], fileList: any[]): any => {
-    //     if (path.length === 0) return {items: fileList}
-    //
-    //     let currentFiles = fileList
-    //     let currentFolder = null
-    //
-    //     for (let i = 0; i < path.length; i++) {
-    //         const folderName = path[i]
-    //         currentFolder = currentFiles.find((file) => file.type === "folder" && file.name === folderName)
-    //
-    //         if (!currentFolder || !currentFolder.items) {
-    //             return null
-    //         }
-    //
-    //         if (i === path.length - 1) {
-    //             return currentFolder
-    //         }
-    //
-    //         currentFiles = currentFolder.items
-    //     }
-    //
-    //     return null
-    // }
-
-    // Function to create a new folder in the current location
-    // const createFolder = (name: string) => {
-    //     const newFolder = {
-    //         name,
-    //         type: "folder",
-    //         items: [],
-    //         modified: new Date().toLocaleDateString("en-US", {month: "short", day: "numeric", year: "numeric"}),
-    //     }
-    //
-    //     // Create a deep copy of the files array
-    //     const newFiles = JSON.parse(JSON.stringify(items))
-    //
-    //     if (currentPath.length === 0) {
-    //         // Add to root level
-    //         setItems([...newFiles, newFolder])
-    //     } else {
-    //         // Find the current folder and add the new folder to its items
-    //         const currentFolder = findFolderByPath(currentPath, newFiles)
-    //
-    //         if (currentFolder && currentFolder.items) {
-    //             currentFolder.items.push(newFolder)
-    //             setItems(newFiles)
-    //         }
-    //     }
-    // }
-
-    // Get current files to display based on path
-    // const getCurrentFiles = () => {
-    //     if (currentPath.length === 0) return items
-    //
-    //     const currentFolder = findFolderByPath(currentPath, items)
-    //     return currentFolder && currentFolder.items ? currentFolder.items : []
-    // }
-
-    // const displayedFiles = getCurrentFiles()
-
-    // Build breadcrumb navigation
     const renderBreadcrumbs = () => {
         if (currentPath.length === 0) {
             return <h1 className="text-2xl font-bold">Drive</h1>
@@ -143,7 +79,6 @@ export default function Home() {
                         {renderBreadcrumbs()}
                     </div>
                     <div className="flex gap-2">
-                        {/*<FolderActions onCreateFolder={createFolder}/>*/}
                         <UploadButton/>
                     </div>
                 </div>
@@ -168,7 +103,9 @@ export default function Home() {
                     </div>
                 </div>
 
-                <FileExplorer files={items} viewMode={viewMode} onFolderClick={navigateToFolder}/>
+                <FileExplorer files={items}
+                              viewMode={viewMode}
+                              onFolderClick={navigateToFolder}/>
             </div>
         </>
     )

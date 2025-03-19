@@ -11,15 +11,7 @@ ___
 - [x] Create the UI with mock data.
 - [x] Make folder and file browsing possible.
 - [x] Authentication with Clerk.
-- [ ] Database hookup with Drizzle ORM and Supabase.
+- [x] Database hookup with Drizzle ORM and Supabase.
 - [ ] Enable file upload to an AWS S3 bucket.
 - [ ] File delete.
 - [ ] Folder creation & deletion.
-
-___
-
-#### Notes 18/03
-
-- [x] Fetch root files from db.
-- [ ] Fetch files at current path (other paths than root).
-- [ ] Fetch folders from db at current path.
