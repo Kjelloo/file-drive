@@ -14,7 +14,6 @@ export const files = pgTable('files', {
     parentId: uuid('parent_id').references(() => folders.id),
     userId: text('user_id').notNull(),
     createdAt: timestamp('created_at').defaultNow(),
-    updatedAt: timestamp('updated_at').defaultNow(),
 });
 
 export const folders = pgTable('folders', {
@@ -25,5 +24,4 @@ export const folders = pgTable('folders', {
     parentId: uuid('parent_id').references((): any => folders.id),
     userId: text('user_id').notNull(),
     createdAt: timestamp('created_at').defaultNow(),
-    updatedAt: timestamp('updated_at').defaultNow(),
 });
