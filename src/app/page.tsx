@@ -17,6 +17,7 @@ export default function Home() {
 
     const [items, setItems] = useState<DriveItem[]>([])
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+    const [currentFolderId, setCurrentFolderId] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchDriveItems = async () => {
@@ -26,6 +27,29 @@ export default function Home() {
                 
                 if (response.ok) {
                     setItems([...data.folders, ...data.files]);
+                    // Set current folder ID if we're in a folder
+                    if (currentPath.length > 0) {
+                        // Find the current folder by traversing the path
+                        let currentFolder = null;
+                        let currentPathSoFar = '';
+                        
+                        for (const folderName of currentPath) {
+                            currentPathSoFar += (currentPathSoFar ? '/' : '') + folderName;
+                            const folder = data.folders.find((f: DriveFolder) => 
+                                f.name === folderName && f.path === currentPathSoFar
+                            );
+                            if (folder) {
+                                currentFolder = folder;
+                            }
+                        }
+                        
+                        if (currentFolder) {
+                            console.log('Setting current folder ID:', currentFolder.id);
+                            setCurrentFolderId(currentFolder.id);
+                        }
+                    } else {
+                        setCurrentFolderId(null);
+                    }
                 } else {
                     console.error('Failed to fetch drive items:', data.error);
                 }
@@ -37,6 +61,8 @@ export default function Home() {
     }, [pathParam]);
 
     const navigateToFolder = (folderId: string, folderName: string) => {
+        console.log('Navigating to folder:', folderId);
+        setCurrentFolderId(folderId);
         const newPath = [...currentPath, folderName]
         router.push(`/?path=${newPath.join("/")}`);
     }
@@ -50,15 +76,31 @@ export default function Home() {
             <div>
                 <h1 className="text-2xl font-bold">{currentPath[currentPath.length - 1]}</h1>
                 <div className="mt-1 flex items-center text-sm">
-                    <Link href="/" className="text-blue-500 hover:underline">
+                    <Link 
+                        href="/" 
+                        className="text-blue-500 hover:underline"
+                        onClick={() => setCurrentFolderId(null)}
+                    >
                         My Drive
                     </Link>
                     {currentPath.slice(0, -1).map((folder, index) => {
                         const pathToHere = currentPath.slice(0, index + 1).join("/")
+                        const folderItem = items.find(item => 
+                            !('url' in item) && 
+                            item.name === folder && 
+                            item.path === pathToHere
+                        ) as DriveFolder;
                         return (
                             <span key={index}>
                                 <span className="mx-1 text-muted-foreground">/</span>
-                                <Link href={`/?path=${pathToHere}`} className="text-blue-500 hover:underline">
+                                <Link 
+                                    href={`/?path=${pathToHere}`} 
+                                    className="text-blue-500 hover:underline"
+                                    onClick={() => {
+                                        console.log('Setting folder ID from breadcrumb:', folderItem?.id);
+                                        setCurrentFolderId(folderItem?.id || null);
+                                    }}
+                                >
                                     {folder}
                                 </Link>
                             </span>
@@ -79,7 +121,7 @@ export default function Home() {
                         {renderBreadcrumbs()}
                     </div>
                     <div className="flex gap-2">
-                        <UploadButton/>
+                        <UploadButton currentFolderId={currentFolderId}/>
                     </div>
                 </div>
 

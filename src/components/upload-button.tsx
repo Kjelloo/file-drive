@@ -9,7 +9,11 @@ import {Progress} from "@/components/ui/progress"
 import axios, { AxiosProgressEvent } from "axios"
 import {DriveFile, DriveFolder} from "@/db"
 
-export function UploadButton() {
+interface UploadButtonProps {
+    currentFolderId: string | null;
+}
+
+export function UploadButton({ currentFolderId }: UploadButtonProps) {
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -44,12 +48,7 @@ export function UploadButton() {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('path', pathParam);
-        
-        // Find the current folder's ID from the items array
-        const currentFolder = items.find(item => 
-            !('url' in item) && item.name === currentPath[currentPath.length - 1]
-        );
-        formData.append('parentId', currentFolder?.id || '');
+        formData.append('parentId', currentFolderId || '');
 
         try {
             await axios.post('/api/drive/upload', formData, {
