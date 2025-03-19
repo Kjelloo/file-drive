@@ -1,18 +1,10 @@
 import {FileItem} from "./file-item"
+import {DriveFile, DriveFolder} from "@/db";
 
-interface File {
-    id: string
-    name: string
-    type: string
-    size?: string
-    modified: string
-    items?: File[]
-}
-
-interface FileExplorerProps {
-    files: File[]
-    viewMode: "grid" | "list"
-    onFolderClick: (id: string, name: string) => void
+type FileExplorerProps = {
+    files: (DriveFile | DriveFolder)[];
+    viewMode: "grid" | "list";
+    onFolderClick: (id: string, name: string) => void;
 }
 
 export function FileExplorer({files, viewMode, onFolderClick}: FileExplorerProps) {
