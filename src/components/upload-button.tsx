@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import {useRef, useState, useEffect} from "react"
+import {useRef, useState} from "react"
 import {Upload} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {useSearchParams} from "next/navigation"
@@ -11,30 +11,15 @@ import {DriveFile, DriveFolder} from "@/db"
 
 interface UploadButtonProps {
     currentFolderId: string | null;
+    onFileUploaded: (newFile: DriveFile) => void;
 }
 
-export function UploadButton({ currentFolderId }: UploadButtonProps) {
+export function UploadButton({ currentFolderId, onFileUploaded }: UploadButtonProps) {
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const searchParams = useSearchParams();
     const pathParam = searchParams.get("path") || "";
-    const [, setItems] = useState<(DriveFile | DriveFolder)[]>([]);
-
-    useEffect(() => {
-        const fetchItems = async () => {
-            try {
-                const response = await fetch(`/api/drive?path=${pathParam || ''}`);
-                const data = await response.json();
-                if (response.ok) {
-                    setItems([...data.folders, ...data.files]);
-                }
-            } catch (error) {
-                console.error('Failed to fetch items:', error);
-            }
-        };
-        fetchItems();
-    }, [pathParam]);
 
     const handleUploadClick = () => {
         if (fileInputRef.current) {
@@ -50,7 +35,7 @@ export function UploadButton({ currentFolderId }: UploadButtonProps) {
         formData.append('parentId', currentFolderId || '');
 
         try {
-            await axios.post('/api/drive/upload', formData, {
+            const response = await axios.post('/api/drive/upload', formData, {
                 onUploadProgress: (progressEvent: AxiosProgressEvent) => {
                     if (progressEvent.total) {
                         const progress = (progressEvent.loaded / progressEvent.total) * 100;
@@ -58,7 +43,10 @@ export function UploadButton({ currentFolderId }: UploadButtonProps) {
                     }
                 }
             });
-            window.location.reload();
+            
+            if (response.data) {
+                onFileUploaded(response.data);
+            }
         } catch (error) {
             console.error('Upload error:', error);
         } finally {

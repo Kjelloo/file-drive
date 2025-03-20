@@ -137,7 +137,10 @@ export default function Home() {
                             <p className="h-4 text-muted-foreground"></p>
                         </div>
                         <div className="flex gap-2">
-                            <UploadButton currentFolderId={currentFolderId}/>
+                            <UploadButton 
+                                currentFolderId={currentFolderId}
+                                onFileUploaded={(newFile) => setItems(prevItems => [...prevItems, newFile])}
+                            />
                         </div>
                     </div>
                 </div>
