@@ -28,29 +28,22 @@ export default function Home() {
             try {
                 const response = await fetch(`/api/drive?path=${pathParam || ''}`);
                 const data = await response.json();
-                
+
                 if (response.ok) {
                     setItems([...data.folders, ...data.files]);
-                    // Set current folder ID if we're in a folder
                     if (currentPath.length > 0) {
-                        // Find the current folder by traversing the path
                         let currentFolder = null;
                         let currentPathSoFar = '';
-                        
+
                         for (const folderName of currentPath) {
                             currentPathSoFar += (currentPathSoFar ? '/' : '') + folderName;
-                            const folder = data.folders.find((f: DriveFolder) => 
+                            const folder = data.folders.find((f: DriveFolder) =>
                                 f.name === folderName && f.path === currentPathSoFar
                             );
-                            if (folder) {
-                                currentFolder = folder;
-                            }
+                            if (folder) currentFolder = folder;
                         }
-                        
-                        if (currentFolder) {
-                            console.log('Setting current folder ID:', currentFolder.id);
-                            setCurrentFolderId(currentFolder.id);
-                        }
+
+                        if (currentFolder) setCurrentFolderId(currentFolder.id);
                     } else {
                         setCurrentFolderId(null);
                     }
@@ -63,7 +56,7 @@ export default function Home() {
                 setIsLoading(false);
             }
         };
-        fetchDriveItems().finally();
+        fetchDriveItems();
     }, [pathParam]);
 
     const navigateToFolder = (folderId: string, folderName: string) => {
