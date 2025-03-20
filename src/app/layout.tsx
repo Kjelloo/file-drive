@@ -2,11 +2,10 @@ import type React from "react"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import "./globals.css"
-import {FileText, Menu, Search} from "lucide-react"
+import {FileText, Menu} from "lucide-react"
 import Link from "next/link"
 
 import {Button} from "@/components/ui/button"
-import {Input} from "@/components/ui/input"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet"
 import {ClerkProvider, SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 
@@ -56,15 +55,11 @@ export default function RootLayout({
                             </Link>
                         </div>
                         <div className="ml-auto flex items-center gap-4">
-                            <form className="relative hidden md:block">
-                                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"/>
-                                <Input
-                                    type="search"
-                                    placeholder="Search in Drive"
-                                    className="w-64 rounded-full bg-muted pl-8 md:w-80"
-                                />
-                            </form>
-                            <UserButton />
+                            <UserButton appearance={{
+                                layout: {
+                                    shimmer: false,
+                                }
+                            }} />
                         </div>
                     </header>
                     <div className="flex flex-1">
