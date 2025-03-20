@@ -56,15 +56,11 @@ export default function RootLayout({
                             </Link>
                         </div>
                         <div className="ml-auto flex items-center gap-4">
-                            <form className="relative hidden md:block">
-                                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"/>
-                                <Input
-                                    type="search"
-                                    placeholder="Search in Drive"
-                                    className="w-64 rounded-full bg-muted pl-8 md:w-80"
-                                />
-                            </form>
-                            <UserButton />
+                            <UserButton appearance={{
+                                layout: {
+                                    shimmer: false,
+                                }
+                            }} />
                         </div>
                     </header>
                     <div className="flex flex-1">

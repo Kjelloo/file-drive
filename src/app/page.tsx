@@ -6,6 +6,7 @@ import Link from "next/link"
 import {FileExplorer} from "@/components/file-explorer"
 import {UploadButton} from "@/components/upload-button"
 import {DriveFile, DriveFolder} from "@/db";
+import {Button} from "@/components/ui/button";
 
 type DriveItem = DriveFile | DriveFolder;
 
@@ -18,9 +19,11 @@ export default function Home() {
     const [items, setItems] = useState<DriveItem[]>([])
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
     const [currentFolderId, setCurrentFolderId] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const fetchDriveItems = async () => {
+            setIsLoading(true);
             try {
                 const response = await fetch(`/api/drive?path=${pathParam || ''}`);
                 const data = await response.json();
@@ -55,6 +58,8 @@ export default function Home() {
                 }
             } catch (error) {
                 console.error('Failed to fetch drive items:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchDriveItems();
@@ -120,34 +125,43 @@ export default function Home() {
                     <div>
                         {renderBreadcrumbs()}
                     </div>
-                    <div className="flex gap-2">
-                        <UploadButton currentFolderId={currentFolderId}/>
+                    <div className="flex items-center">
+                        <div className="flex flex-col px-2">
+                            <Button className="cursor-pointer" variant="outline">Create folder</Button>
+                            <p className="h-4 text-muted-foreground"></p>
+                        </div>
+                        <div className="flex gap-2">
+                            <UploadButton currentFolderId={currentFolderId}/>
+                        </div>
                     </div>
                 </div>
 
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 bg flex items-center justify-between">
                     <div className="text-sm text-muted-foreground">
                         {items.length} {items.length === 1 ? "item" : "items"}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex outline-gray-200 outline-1 rounded-md">
                         <button
                             onClick={() => setViewMode("grid")}
-                            className={`rounded-md p-2 cursor-pointer ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
+                            className={`rounded-l-md px-2 py-1 cursor-pointer ${viewMode === "grid" ? "bg-accent" : "hover:bg-muted"}`}
                         >
                             Grid
                         </button>
                         <button
                             onClick={() => setViewMode("list")}
-                            className={`rounded-md p-2 cursor-pointer ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
+                            className={`rounded-r-md px-2 py-1 cursor-pointer ${viewMode === "list" ? "bg-accent" : "hover:bg-muted"}`}
                         >
                             List
                         </button>
                     </div>
                 </div>
 
-                <FileExplorer files={items}
-                              viewMode={viewMode}
-                              onFolderClick={navigateToFolder}/>
+                <FileExplorer 
+                    files={items}
+                    viewMode={viewMode}
+                    onFolderClick={navigateToFolder}
+                    isLoading={isLoading}
+                />
             </div>
         </>
     )

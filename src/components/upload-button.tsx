@@ -19,8 +19,7 @@ export function UploadButton({ currentFolderId }: UploadButtonProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const searchParams = useSearchParams();
     const pathParam = searchParams.get("path") || "";
-    const currentPath = pathParam ? pathParam.split("/") : [];
-    const [items, setItems] = useState<(DriveFile | DriveFolder)[]>([]);
+    const [, setItems] = useState<(DriveFile | DriveFolder)[]>([]);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -86,18 +85,20 @@ export function UploadButton({ currentFolderId }: UploadButtonProps) {
 
     return (
         <>
-            <Button onClick={handleUploadClick} disabled={isUploading} className="cursor-pointer">
-                <Upload className="mr-2 h-4 w-4"/>
-                {isUploading ? "Uploading..." : "Upload"}
-            </Button>
-            {isUploading && (
-                <div className="mt-2 w-full">
-                    <Progress value={uploadProgress} className="w-full" />
-                    <p className="text-sm text-muted-foreground mt-1">
-                        {Math.round(uploadProgress)}% complete
-                    </p>
+            <div className="flex flex-col items-center">
+                <Button onClick={handleUploadClick} disabled={isUploading} className="cursor-pointer">
+                    <Upload className="mr-2 h-4 w-4"/>
+                    {isUploading ? "Uploading..." : "Upload"}
+                </Button>
+                <div className="mt-2 h-2 w-full">
+                    {isUploading && (
+                        <><Progress value={uploadProgress} className="w-full"/><p
+                            className="text-sm text-muted-foreground mt-1">
+                            {Math.round(uploadProgress)}% complete
+                        </p></>
+                    )}
                 </div>
-            )}
+            </div>
             <input 
                 type="file" 
                 ref={fileInputRef} 
