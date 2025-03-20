@@ -2,11 +2,10 @@ import type React from "react"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import "./globals.css"
-import {FileText, Menu, Search} from "lucide-react"
+import {FileText, Menu} from "lucide-react"
 import Link from "next/link"
 
 import {Button} from "@/components/ui/button"
-import {Input} from "@/components/ui/input"
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet"
 import {ClerkProvider, SignedIn, SignedOut, UserButton} from "@clerk/nextjs";
 

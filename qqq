@@ -1,0 +1,217 @@
+[33mcommit a4ec682f18b43055fe06831cc35f0df1b6136bf2[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/db-upload-file[m[33m)[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Thu Mar 20 02:07:50 2025 +0100
+
+    Push newly uploaded file to items instead of reloading page
+
+[33mcommit 27720845122130f46274610a5f4918de598e244f[m[33m ([m[1;31morigin/feature/db-upload-file[m[33m)[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Thu Mar 20 02:04:39 2025 +0100
+
+    Added create folder button fully
+
+[33mcommit 97740f5caa6c39f01c5e719493837e9afb8c6a02[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Thu Mar 20 01:13:59 2025 +0100
+
+    added create folder button and added skeletons to Grid and List view when loading
+
+[33mcommit f93615ea8b9ff7af2e6b8c9554cd3d37c60ba589[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 20:43:28 2025 +0100
+
+    Added file upload per folder
+
+[33mcommit dac5e7ff4464bf996259abdf691f98c431531bea[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 19:35:26 2025 +0100
+
+    Added file metadata upload
+
+[33mcommit 7e1b68b0d05943eb9593a54b13213a31e22ea8ed[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 73a5a93 f7c6c66
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 01:55:09 2025 +0100
+
+    Merge pull request #2 from Kjelloo/feature/db
+    
+    Database integration
+
+[33mcommit f7c6c66437f2b8d874abc0fda54bcdd1ba4afa32[m[33m ([m[1;31morigin/feature/db[m[33m)[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 01:53:26 2025 +0100
+
+    Eslint fixes
+
+[33mcommit 7f7be2040f8e3f8c15dccb17433e66cb6ef19efe[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 01:50:50 2025 +0100
+
+    Fully working user-based file and folder exploring
+
+[33mcommit a06d62da6045779067b4f7c317ac93afc917131b[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 00:31:46 2025 +0100
+
+    Readded eslint GH workflow
+
+[33mcommit 73a5a93989750f58ddb758ce5116361dfaf2eaa2[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 00:30:32 2025 +0100
+
+    Delete .github/workflows directory
+
+[33mcommit b181025515aacf45ecff5fdc1498f24c951a5726[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 00:09:59 2025 +0100
+
+    Create eslint.yml
+
+[33mcommit 7660ff645fd3388808f995d81d85caa8fe6f916c[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Wed Mar 19 00:07:07 2025 +0100
+
+    Removed eslint
+
+[33mcommit 931b0399e9d6c5432b89a9e784b6246a7ed14b87[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Tue Mar 18 23:59:58 2025 +0100
+
+    Added eslint GH Action
+
+[33mcommit 31850a49bfec5307a4185996f0def745658a1bc5[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Tue Mar 18 21:12:24 2025 +0100
+
+    Fetch root files from supabase. Folders do not work yet
+
+[33mcommit 6deea65a9d87a8bea457a82884b9f284355b1926[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Tue Mar 18 18:35:53 2025 +0100
+
+    Updated drizzle conf
+
+[33mcommit 54c27fefeae9ef4a4916960e18d27209675e4ac7[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Tue Mar 18 18:16:00 2025 +0100
+
+    Added db push for prod
+
+[33mcommit ca2ecc45429123091bcb0af9e09b29eb97efc972[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Tue Mar 18 15:56:52 2025 +0100
+
+    Added drizzle orm and connection to supabase
+
+[33mcommit c58afb310e86b327d08964b776ce208f9e7d9b73[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 02:55:48 2025 +0100
+
+    Updated README.md and website title
+
+[33mcommit 07082454c839e8b1ff71f0d7c3805e91cc7acd27[m
+Merge: d207df3 ecca1ed
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 02:51:40 2025 +0100
+
+    Merge pull request #1 from Kjelloo/feature/auth
+    
+    Feature auth
+
+[33mcommit ecca1ed048e9e94d917f8f0eebdc5cd64dc7a9e9[m[33m ([m[1;31morigin/feature/auth[m[33m)[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 02:39:18 2025 +0100
+
+    Improvements to make sign-out more smoothly
+
+[33mcommit 53337afef9d54de3c5d67a78ccc35e76c778fa9d[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 02:35:11 2025 +0100
+
+    Removed cloudflare pages improvements to facilitate vercel deployment
+
+[33mcommit 9737072fc4751ea9d0d7ed8a9de249fd29ed5df5[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 01:45:00 2025 +0100
+
+    Reformat code
+
+[33mcommit c1666da06f9b1748f72df626f533f9bd21c72cd5[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 01:38:04 2025 +0100
+
+    Revert "Updated edge runtime"
+    
+    This reverts commit eb3a6ebc7b5858c57c5888c67eff23359b47f6e0.
+
+[33mcommit e0797f4e327f34ddb9b77ef86242eea467cc292e[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 01:20:04 2025 +0100
+
+    Another potential fix for auth
+
+[33mcommit ae998abd955b740c6ce8a6f27b555580138f2036[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Mon Mar 17 01:00:21 2025 +0100
+
+    Potential fix for Cloudflare pages
+
+[33mcommit 5cc6186b49bda003dfb562aba626b563bac04789[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 02:54:41 2025 +0100
+
+    Updated edge runtime for not found
+
+[33mcommit eb3a6ebc7b5858c57c5888c67eff23359b47f6e0[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 02:43:47 2025 +0100
+
+    Updated edge runtime
+
+[33mcommit dd1fb38075a315df3d9fa0bacb8e35f36145aa30[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 02:29:24 2025 +0100
+
+    Added auth
+
+[33mcommit 730c035828d912a4370fc7669552ed75897bc24c[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 01:28:34 2025 +0100
+
+    Added cursor pointer to buttons
+
+[33mcommit d207df323d46106bfe1c81332d62b78d81b6e17e[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 01:20:47 2025 +0100
+
+    Removed unused function
+
+[33mcommit ae7d0281aaf41a50afdc67b3cbb91a05bf372fe7[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 01:15:56 2025 +0100
+
+    Added UI with mock data
+
+[33mcommit c9a960dd12bbe5e0bcb493d3f8ced3714a8ef1a8[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sun Mar 16 00:04:22 2025 +0100
+
+    Updated README.md
+
+[33mcommit 4ff1efc8697063fccb4f3ca217457d4d7acc3cb8[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sat Mar 15 20:21:36 2025 +0100
+
+    Remove wrangler
+
+[33mcommit f1abf8061b25c14c6f1777ac02e60f34423b52ca[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sat Mar 15 20:17:31 2025 +0100
+
+    Added wrangler config
+
+[33mcommit b3f0c32776a838cb54b598dddb01b02fa845bdfe[m
+Author: Kjell Schoke <kjell.schoke@outlook.com>
+Date:   Sat Mar 15 17:49:37 2025 +0100
+
+    Initial commit

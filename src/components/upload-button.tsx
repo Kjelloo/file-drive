@@ -7,7 +7,7 @@ import {Button} from "@/components/ui/button"
 import {useSearchParams} from "next/navigation"
 import {Progress} from "@/components/ui/progress"
 import axios, { AxiosProgressEvent } from "axios"
-import {DriveFile, DriveFolder} from "@/db"
+import {DriveFile} from "@/db"
 
 interface UploadButtonProps {
     currentFolderId: string | null;

@@ -7,7 +7,6 @@ import Link from "next/link"
 import {FileExplorer} from "@/components/file-explorer"
 import {UploadButton} from "@/components/upload-button"
 import {DriveFile, DriveFolder} from "@/db";
-import {Button} from "@/components/ui/button";
 import {CreateFolderDialog} from "@/components/create-folder-dialog";
 
 type DriveItem = DriveFile | DriveFolder;
