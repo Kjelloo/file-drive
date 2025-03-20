@@ -1,5 +1,5 @@
-import {db, DriveFile} from "@/db";
-import {files} from "@/db/schema";
+import {db, DriveFile, DriveFolder} from "@/db";
+import {files, folders} from "@/db/schema";
 
 export async function uploadFileMetadata(file: DriveFile): Promise<DriveFile> {
     if (!file) {
@@ -27,7 +27,7 @@ export async function uploadFileMetadata(file: DriveFile): Promise<DriveFile> {
     return fileCreated[0];
 }
 
-export async function uploadFolderMetadata(folder: DriveFile): Promise<DriveFile> {
+export async function uploadFolderMetadata(folder: DriveFolder): Promise<DriveFolder> {
     if (!folder) {
         throw new Error("Folder is required");
     }
@@ -38,7 +38,7 @@ export async function uploadFolderMetadata(folder: DriveFile): Promise<DriveFile
         throw new Error("Folder name is required");
     }
 
-    const folderCreated = await db.insert(files).values(folder).returning();
+    const folderCreated = await db.insert(folders).values(folder).returning();
 
     if (!folderCreated) {
         throw new Error("Failed to create folder");

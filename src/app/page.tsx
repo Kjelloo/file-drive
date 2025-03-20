@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import {useState, useEffect} from "react"
@@ -7,6 +8,7 @@ import {FileExplorer} from "@/components/file-explorer"
 import {UploadButton} from "@/components/upload-button"
 import {DriveFile, DriveFolder} from "@/db";
 import {Button} from "@/components/ui/button";
+import {CreateFolderDialog} from "@/components/create-folder-dialog";
 
 type DriveItem = DriveFile | DriveFolder;
 
@@ -62,7 +64,7 @@ export default function Home() {
                 setIsLoading(false);
             }
         };
-        fetchDriveItems();
+        fetchDriveItems().finally();
     }, [pathParam]);
 
     const navigateToFolder = (folderId: string, folderName: string) => {
@@ -127,7 +129,11 @@ export default function Home() {
                     </div>
                     <div className="flex items-center">
                         <div className="flex flex-col px-2">
-                            <Button className="cursor-pointer" variant="outline">Create folder</Button>
+                            <CreateFolderDialog 
+                                currentFolderId={currentFolderId}
+                                currentPath={currentPath}
+                                onFolderCreated={(newFolder) => setItems(prevItems => [...prevItems, newFolder])}
+                            />
                             <p className="h-4 text-muted-foreground"></p>
                         </div>
                         <div className="flex gap-2">
