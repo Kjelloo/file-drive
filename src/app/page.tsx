@@ -68,13 +68,13 @@ export default function Home() {
 
     const renderBreadcrumbs = () => {
         if (currentPath.length === 0) {
-            return <h1 className="text-2xl font-bold">Drive</h1>
+            return <h1 className="text-2xl font-bold unselectable">Drive</h1>
         }
 
         return (
             <div>
-                <h1 className="text-2xl font-bold">{currentPath[currentPath.length - 1]}</h1>
-                <div className="mt-1 flex items-center text-sm">
+                <h1 className="text-2xl font-bold unselectable">{currentPath[currentPath.length - 1]}</h1>
+                <div className="mt-1 flex items-center text-sm unselectable">
                     <Link 
                         href="/" 
                         className="text-blue-500 hover:underline"
@@ -91,7 +91,7 @@ export default function Home() {
                         ) as DriveFolder;
                         return (
                             <span key={index}>
-                                <span className="mx-1 text-muted-foreground">/</span>
+                                <span className="mx-1 text-muted-foreground unselectable">/</span>
                                 <Link 
                                     href={`/?path=${pathToHere}`} 
                                     className="text-blue-500 hover:underline"
@@ -105,8 +105,8 @@ export default function Home() {
                             </span>
                         )
                     })}
-                    <span className="mx-1 text-muted-foreground">/</span>
-                    <span className="text-muted-foreground">{currentPath[currentPath.length - 1]}</span>
+                    <span className="mx-1 text-muted-foreground unselectable">/</span>
+                    <span className="text-muted-foreground unselectable">{currentPath[currentPath.length - 1]}</span>
                 </div>
             </div>
         )
@@ -121,7 +121,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center">
                         <div className="flex flex-col px-2">
-                            <CreateFolderDialog 
+                            <CreateFolderDialog
                                 currentFolderId={currentFolderId}
                                 currentPath={currentPath}
                                 onFolderCreated={(newFolder) => setItems(prevItems => [...prevItems, newFolder])}
@@ -138,7 +138,7 @@ export default function Home() {
                 </div>
 
                 <div className="mb-4 bg flex items-center justify-between">
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground unselectable">
                         {items.length} {items.length === 1 ? "item" : "items"}
                     </div>
                     <div className="flex outline-gray-200 outline-1 rounded-md">

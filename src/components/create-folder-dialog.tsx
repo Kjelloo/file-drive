@@ -68,9 +68,9 @@ export function CreateFolderDialog({ currentFolderId, currentPath, onFolderCreat
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline">Create folder</Button>
+                <Button className="cursor-pointer" variant="outline">Create folder</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] unselectable">
                 <form onSubmit={handleSubmit}>
                     <DialogHeader>
                         <DialogTitle>Create new folder</DialogTitle>

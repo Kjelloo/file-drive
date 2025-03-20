@@ -51,11 +51,11 @@ export function FileItem({ file, view, onFolderClick}: FileItemProps) {
     if (view === "grid") {
         return (
             <div
-                className="flex flex-col items-center rounded-lg border p-4 transition-colors hover:bg-accent/50 cursor-pointer"
+                className="flex flex-col items-center rounded-lg border p-4 transition-colors hover:bg-accent/50 cursor-pointer unselectable"
                 onClick={handleClick}
             >
                 {getFileIcon()}
-                <div className="mt-2 text-center">
+                <div className="mt-2 text-center unselectable">
                     <p className="font-medium line-clamp-1">{file.name}</p>
                 </div>
             </div>
@@ -64,20 +64,20 @@ export function FileItem({ file, view, onFolderClick}: FileItemProps) {
 
     return (
         <tr
-            className="border-b transition-colors hover:bg-accent/50 cursor-pointer"
+            className="border-b transition-colors hover:bg-accent/50 cursor-pointer unselectable"
             onClick={handleClick}
         >
             <td className="flex items-center gap-2 px-4 py-3">
                 {getFileIcon("small")}
                 <span>{file.name}</span>
             </td>
-            <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell">
+            <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell unselectable">
                 {!isFolder ? file.type.toUpperCase() : ''}
             </td>
-            <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell">
+            <td className="hidden px-4 py-3 text-sm text-muted-foreground md:table-cell unselectable">
                 {!isFolder ? file.size : "-"}
             </td>
-            <td className="px-4 py-3 text-sm text-muted-foreground">{file.modified?.toString().split('T')[0]}</td>
+            <td className="px-4 py-3 text-sm text-muted-foreground unselectable">{file.modified?.toString().split('T')[0]}</td>
         </tr>
     )
 }
