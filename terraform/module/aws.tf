@@ -20,7 +20,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = aws_iam_user.s3.name
+          AWS = aws_iam_user.s3.arn
         }
         Action = [
           "s3:*"
