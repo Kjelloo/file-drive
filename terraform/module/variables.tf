@@ -47,10 +47,10 @@ variable "next_public_clerk_publishable_key" {
 
 variable "next_public_clerk_sign_in_url" {
   type = string
-  # default = "/sign-in"
+  default = "/sign-in"
 }
 
 variable "next_public_clerk_sign_in_fallback_redirect_url" {
   type = string
-  # default = "/"
+  default = "/"
 }
