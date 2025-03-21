@@ -3,33 +3,33 @@ resource "aws_iam_user" "s3" {
   path = var.s3_path
 }
 
-resource "aws_iam_user_policy" "s3_ro" {
-  name = var.s3_user_policy_name
-  user = aws_iam_user.s3.name
-
-    policy = jsonencode({
-        Version = "2012-10-17"
-        Statement = [
-        {
-            Effect = "Allow"
-            Action = [
-            "s3:ListAllMyBuckets",
-            "s3:GetBucketLocation",
-            "s3:ListBucket",
-            "s3:ListBucketMultipartUploads",
-            "s3:GetObject",
-            "s3:ListMultipartUploadParts",
-            "s3:PutObject",
-            "s3:AbortMultipartUpload",
-            "s3:DeleteObject",
-            "s3:PutObjectAcl",
-            ]
-            Resource = "*"
-        }
-        ]
-    })
+resource "aws_iam_user_policy_attachment" "iam_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+  user       = aws_iam_user.s3.name
 }
 
-resource "aws_iam_access_key" "s3" {
-  user = aws_iam_user.s3.name
+resource "aws_s3_bucket" "files" {
+  bucket = var.s3_bucket_name
+}
+
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.files.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          AWS = aws_iam_user.s3.name
+        }
+        Action = [
+          "s3:*"
+        ]
+        Resource = [
+          "${aws_s3_bucket.files.arn}/*",
+          aws_s3_bucket.files.arn
+        ]
+      }
+    ]
+  })
 }
