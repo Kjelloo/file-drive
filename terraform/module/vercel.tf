@@ -16,6 +16,7 @@ resource "vercel_project_environment_variables" "drive" {
       key     = "POSTGRES_URL"
       value   = var.postgres_url
       target  = var.environment == "prod" ? ["production"] : ["preview"]
+      sensitive = true
     },
     {
       key     = "S3_USER"
@@ -36,6 +37,7 @@ resource "vercel_project_environment_variables" "drive" {
       key     = "CLERK_API_KEY"
       value   = var.clerk_secret_key
       target  = var.environment == "prod" ? ["production"] : ["preview"]
+      sensitive = true
     },
     {
       key     = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"

@@ -31,18 +31,18 @@ variable "github_repo" {
 variable "postgres_url" {
   type = string
   sensitive = true
-  # default = "postgres://postgres:password@localhost:5432/postgres"
+  default = "postgres://postgres:password@localhost:5432/postgres"
 }
 
 variable "clerk_secret_key" {
   type = string
   sensitive = true
-  # default = "default"
+  default = "default"
 }
 
 variable "next_public_clerk_publishable_key" {
   type = string
-  # default = "default"
+  default = "default"
 }
 
 variable "next_public_clerk_sign_in_url" {
