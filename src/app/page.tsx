@@ -28,29 +28,22 @@ export default function Home() {
             try {
                 const response = await fetch(`/api/drive?path=${pathParam || ''}`);
                 const data = await response.json();
-                
+
                 if (response.ok) {
                     setItems([...data.folders, ...data.files]);
-                    // Set current folder ID if we're in a folder
                     if (currentPath.length > 0) {
-                        // Find the current folder by traversing the path
                         let currentFolder = null;
                         let currentPathSoFar = '';
-                        
+
                         for (const folderName of currentPath) {
                             currentPathSoFar += (currentPathSoFar ? '/' : '') + folderName;
-                            const folder = data.folders.find((f: DriveFolder) => 
+                            const folder = data.folders.find((f: DriveFolder) =>
                                 f.name === folderName && f.path === currentPathSoFar
                             );
-                            if (folder) {
-                                currentFolder = folder;
-                            }
+                            if (folder) currentFolder = folder;
                         }
-                        
-                        if (currentFolder) {
-                            console.log('Setting current folder ID:', currentFolder.id);
-                            setCurrentFolderId(currentFolder.id);
-                        }
+
+                        if (currentFolder) setCurrentFolderId(currentFolder.id);
                     } else {
                         setCurrentFolderId(null);
                     }
@@ -63,7 +56,7 @@ export default function Home() {
                 setIsLoading(false);
             }
         };
-        fetchDriveItems().finally();
+        fetchDriveItems();
     }, [pathParam]);
 
     const navigateToFolder = (folderId: string, folderName: string) => {
@@ -75,13 +68,13 @@ export default function Home() {
 
     const renderBreadcrumbs = () => {
         if (currentPath.length === 0) {
-            return <h1 className="text-2xl font-bold">Drive</h1>
+            return <h1 className="text-2xl font-bold unselectable">Drive</h1>
         }
 
         return (
             <div>
-                <h1 className="text-2xl font-bold">{currentPath[currentPath.length - 1]}</h1>
-                <div className="mt-1 flex items-center text-sm">
+                <h1 className="text-2xl font-bold unselectable">{currentPath[currentPath.length - 1]}</h1>
+                <div className="mt-1 flex items-center text-sm unselectable">
                     <Link 
                         href="/" 
                         className="text-blue-500 hover:underline"
@@ -98,7 +91,7 @@ export default function Home() {
                         ) as DriveFolder;
                         return (
                             <span key={index}>
-                                <span className="mx-1 text-muted-foreground">/</span>
+                                <span className="mx-1 text-muted-foreground unselectable">/</span>
                                 <Link 
                                     href={`/?path=${pathToHere}`} 
                                     className="text-blue-500 hover:underline"
@@ -112,8 +105,8 @@ export default function Home() {
                             </span>
                         )
                     })}
-                    <span className="mx-1 text-muted-foreground">/</span>
-                    <span className="text-muted-foreground">{currentPath[currentPath.length - 1]}</span>
+                    <span className="mx-1 text-muted-foreground unselectable">/</span>
+                    <span className="text-muted-foreground unselectable">{currentPath[currentPath.length - 1]}</span>
                 </div>
             </div>
         )
@@ -128,7 +121,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center">
                         <div className="flex flex-col px-2">
-                            <CreateFolderDialog 
+                            <CreateFolderDialog
                                 currentFolderId={currentFolderId}
                                 currentPath={currentPath}
                                 onFolderCreated={(newFolder) => setItems(prevItems => [...prevItems, newFolder])}
@@ -145,7 +138,7 @@ export default function Home() {
                 </div>
 
                 <div className="mb-4 bg flex items-center justify-between">
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground unselectable">
                         {items.length} {items.length === 1 ? "item" : "items"}
                     </div>
                     <div className="flex outline-gray-200 outline-1 rounded-md">
