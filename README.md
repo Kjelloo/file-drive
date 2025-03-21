@@ -12,6 +12,7 @@ ___
 - [x] Make folder and file browsing possible.
 - [x] Authentication with Clerk.
 - [x] Database hookup with Drizzle ORM and Supabase.
+- [ ] Terraform setup for S3, Supabase and Vercel
 - [ ] Enable file upload to an AWS S3 bucket.
 - [ ] File delete.
 - [ ] Folder creation & deletion.
