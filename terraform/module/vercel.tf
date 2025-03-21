@@ -1,0 +1,56 @@
+resource "vercel_project" "drive" {
+  name = var.vercel_project_name
+  framework = "nextjs"
+
+  git_repository = {
+    type = "github"
+    repo = var.github_repo
+  }
+}
+
+resource "vercel_project_environment_variables" "drive" {
+  project_id = vercel_project.drive.id
+
+  variables = [
+    {
+      key     = "POSTGRES_URL"
+      value   = var.postgres_url
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "S3_USER"
+      value   = var.s3_user
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "S3_PATH"
+      value   = var.s3_path
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "S3_BUCKET_NAME"
+      value   = var.s3_bucket_name
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "CLERK_API_KEY"
+      value   = var.clerk_secret_key
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      value   = var.next_public_clerk_publishable_key
+      target  = var.environment == "prod" ? ["production"] : ["preview"]
+    },
+    {
+      key     = "NEXT_PUBLIC_CLERK_SIGN_IN_URL"
+      value   = var.next_public_clerk_sign_in_url
+      target  = ["production", "preview"] // Same for either environments
+    },
+    {
+      key     = "NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL"
+      value   = var.next_public_clerk_sign_in_fallback_redirect_url
+      target  = ["production", "preview"]
+    }
+  ]
+}
