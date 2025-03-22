@@ -12,6 +12,12 @@ resource "vercel_project" "drive" {
 resource "vercel_project_environment_variables" "drive" {
   project_id = vercel_project.drive.id
 
+  lifecycle {
+    replace_triggered_by = [
+      random_pet.random.id
+    ]
+  }
+
   variables = [
     {
       key     = "POSTGRES_URL"
@@ -61,4 +67,10 @@ resource "vercel_project_environment_variables" "drive" {
 resource "vercel_project_domain" "drive" {
   project_id = vercel_project.drive.id
   domain     = var.vercel_domain
+}
+
+resource "random_pet" "random" {
+  keepers = {
+    time = timestamp()
+  }
 }
