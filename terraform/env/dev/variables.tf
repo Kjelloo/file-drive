@@ -23,6 +23,11 @@ variable "vercel_project_name" {
   default = "schoke-drive"
 }
 
+variable "vercel_domain" {
+  type = string
+  default = "drive.schoke.dk"
+}
+
 variable "github_repo" {
   type = string
   default = "kjelloo/file-drive"

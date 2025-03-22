@@ -1,48 +1,53 @@
 variable "environment" {
   type = string
-  # default = "dev"
+  default = "dev"
 }
 
 variable "s3_user" {
   type = string
-  # default = "s3-dev"
+  default = "s3-dev"
 }
 
 variable "s3_path" {
   type = string
-  # default = "/terraform/dev/s3/"
+  default = "/terraform/dev/s3/"
 }
 
 variable "s3_bucket_name" {
   type = string
-  # default = "schoke-drive-dev"
+  default = "schoke-drive-dev"
 }
 
 variable "vercel_project_name" {
   type = string
-  # default = "schoke-drive"
+  default = "schoke-drive"
+}
+
+variable "vercel_domain" {
+  type = string
+  default = "drive.schoke.dk"
 }
 
 variable "github_repo" {
   type = string
-  # default = "kjelloo/file-drive"
+  default = "kjelloo/file-drive"
 }
 
 variable "postgres_url" {
   type = string
   sensitive = true
-  # default = "postgres://postgres:password@localhost:5432/postgres"
+  default = "postgres://postgres:password@localhost:5432/postgres"
 }
 
 variable "clerk_secret_key" {
   type = string
   sensitive = true
-  # default = "default"
+  default = "default"
 }
 
 variable "next_public_clerk_publishable_key" {
   type = string
-  # default = "default"
+  default = "default"
 }
 
 variable "next_public_clerk_sign_in_url" {

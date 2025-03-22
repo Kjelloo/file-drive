@@ -1,6 +1,7 @@
 resource "vercel_project" "drive" {
   name = var.vercel_project_name
   framework = "nextjs"
+  serverless_function_region = "fra1"
 
   git_repository = {
     type = "github"
@@ -55,4 +56,9 @@ resource "vercel_project_environment_variables" "drive" {
       target  = ["production", "preview"]
     }
   ]
+}
+
+resource "vercel_project_domain" "drive" {
+  project_id = vercel_project.drive.id
+  domain     = var.vercel_domain
 }
