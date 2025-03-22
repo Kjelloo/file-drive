@@ -12,7 +12,7 @@ module "platform" {
 
   // Clerk
   clerk_secret_key = ""
-  next_public_clerk_publishable_key = ""
+  next_public_clerk_publishable_key = "pk_test_aW1tZW5zZS1ibG93ZmlzaC00My5jbGVyay5hY2NvdW50cy5kZXYk"
   next_public_clerk_sign_in_url = "/sign-in"
   next_public_clerk_sign_in_fallback_redirect_url = "/"
 
