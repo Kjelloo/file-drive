@@ -8,11 +8,11 @@ module "platform" {
   s3_bucket_name = "schoke-drive-dev"
 
   // Supabase
-  postgres_url = "" // Set by terraform cloud
+  postgres_url = var.postgres_url // Set by terraform cloud
 
   // Clerk
-  clerk_secret_key = ""
-  next_public_clerk_publishable_key = "pk_test_aW1tZW5zZS1ibG93ZmlzaC00My5jbGVyay5hY2NvdW50cy5kZXYk"
+  clerk_secret_key = var.clerk_secret_key // Set by terraform cloud
+  next_public_clerk_publishable_key = var.next_public_clerk_publishable_key // Set by terraform cloud
   next_public_clerk_sign_in_url = "/sign-in"
   next_public_clerk_sign_in_fallback_redirect_url = "/"
 
