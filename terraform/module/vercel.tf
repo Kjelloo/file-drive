@@ -13,7 +13,7 @@ resource "vercel_project" "drive" {
       key     = "POSTGRES_URL"
       value   = var.postgres_url
       target  = var.environment == "prod" ? ["production"] : ["preview"]
-      # sensitive = true
+      sensitive = true
     },
     {
       key     = "S3_USER"
@@ -31,10 +31,10 @@ resource "vercel_project" "drive" {
       target  = var.environment == "prod" ? ["production"] : ["preview"]
     },
     {
-      key     = "CLERK_API_KEY"
+      key     = "CLERK_SECRET_KEY"
       value   = var.clerk_secret_key
       target  = var.environment == "prod" ? ["production"] : ["preview"]
-      # sensitive = true
+      sensitive = true
     },
     {
       key     = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
@@ -44,7 +44,7 @@ resource "vercel_project" "drive" {
     {
       key     = "NEXT_PUBLIC_CLERK_SIGN_IN_URL"
       value   = var.next_public_clerk_sign_in_url
-      target  = ["production", "preview"] // Same for either environments
+      target  = ["production", "preview"]
     },
     {
       key     = "NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL"
