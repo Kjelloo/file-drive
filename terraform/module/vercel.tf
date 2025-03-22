@@ -7,18 +7,8 @@ resource "vercel_project" "drive" {
     type = "github"
     repo = var.github_repo
   }
-}
 
-resource "vercel_project_environment_variables" "drive" {
-  project_id = vercel_project.drive.id
-
-  lifecycle {
-    replace_triggered_by = [
-      random_pet.random.id
-    ]
-  }
-
-  variables = [
+  environment = [
     {
       key     = "POSTGRES_URL"
       value   = var.postgres_url
@@ -67,10 +57,4 @@ resource "vercel_project_environment_variables" "drive" {
 resource "vercel_project_domain" "drive" {
   project_id = vercel_project.drive.id
   domain     = var.vercel_domain
-}
-
-resource "random_pet" "random" {
-  keepers = {
-    time = timestamp()
-  }
 }
