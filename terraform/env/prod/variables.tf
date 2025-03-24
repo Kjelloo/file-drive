@@ -1,6 +1,6 @@
 variable "environment" {
-  type = string
-  default = "production"
+  type = list(string)
+  default = ["production"]
 }
 
 variable "s3_user" {

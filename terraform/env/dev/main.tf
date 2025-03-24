@@ -1,6 +1,6 @@
 module "platform" {
   source = "../../module/"
-  environment = "preview"
+  environment = ["development", "preview"]
 
   // S3
   s3_user = "s3-dev"

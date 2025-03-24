@@ -1,6 +1,6 @@
 module "platform" {
   source = "../../module/"
-  environment = "prod"
+  environment = ["production"]
 
   // S3
   s3_user = "s3-prod"

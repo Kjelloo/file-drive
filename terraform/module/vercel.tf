@@ -12,6 +12,42 @@ locals {
       value     = var.s3_user
       target   = [var.environment]
       sensitive = false
+    },
+    {
+      key       = "S3_PATH"
+      value     = var.s3_path
+      target   = [var.environment]
+      sensitive = false
+    },
+    {
+      key       = "S3_BUCKET_NAME"
+      value     = var.s3_bucket_name
+      target   = [var.environment]
+      sensitive = false
+    },
+    {
+      key       = "CLERK_SECRET_KEY"
+      value     = var.clerk_secret_key
+      target   = [var.environment]
+      sensitive = true
+    },
+    {
+      key       = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+      value     = var.next_public_clerk_publishable_key
+      target   = [var.environment]
+      sensitive = false
+    },
+    {
+      key       = "NEXT_PUBLIC_CLERK_SIGN_IN_URL"
+      value     = var.next_public_clerk_sign_in_url
+      target   = [var.environment]
+      sensitive = false
+    },
+    {
+      key       = "NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL"
+      value     = var.next_public_clerk_sign_in_fallback_redirect_url
+      target   = [var.environment]
+      sensitive = false
     }
   ]
 }
@@ -24,6 +60,10 @@ resource "vercel_project" "drive" {
   git_repository = {
     type = "github"
     repo = "Kjelloo/file-drive"
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
