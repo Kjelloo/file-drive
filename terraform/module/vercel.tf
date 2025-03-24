@@ -64,6 +64,7 @@ resource "vercel_project" "drive" {
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes = all
   }
 }
 
