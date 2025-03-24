@@ -9,6 +9,13 @@
     height: 2.5rem;
 }
 
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 :root {
     --radius: 0.625rem;
     --background: oklch(1 0 0);

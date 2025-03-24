@@ -73,16 +73,15 @@ export function UploadButton({ currentFolderId, onFileUploaded }: UploadButtonPr
 
     return (
         <>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center w-24">
                 <Button onClick={handleUploadClick} disabled={isUploading} className="cursor-pointer">
                     <Upload className="mr-2 h-4 w-4"/>
-                    {isUploading ? "Uploading..." : "Upload"}
+                    Upload
                 </Button>
                 <div className="mt-2 h-2 w-full">
                     {isUploading && (
                         <><Progress value={uploadProgress} className="w-full"/><p
                             className="text-sm text-muted-foreground mt-1">
-                            {Math.round(uploadProgress)}% complete
                         </p></>
                     )}
                 </div>

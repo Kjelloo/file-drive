@@ -56,7 +56,7 @@ export function FileExplorer({files, viewMode, onFolderClick, isLoading = false}
 
     if (files.length === 0) {
         return (
-            <div className="flex h-64 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
+            <div className="unselectable flex h-64 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
                 <p className="text-lg font-medium">No files or folders</p>
                 <p className="text-sm text-muted-foreground">Upload files or create a new folder to get started</p>
             </div>

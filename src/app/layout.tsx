@@ -50,7 +50,7 @@ export default function RootLayout({
                                     </nav>
                                 </SheetContent>
                             </Sheet>
-                            <Link href="/" className="flex items-center gap-2 font-semibold">
+                            <Link href="/" className="flex items-center gap-2 font-semibold unselectable">
                                 <span>Filedrive</span>
                             </Link>
                         </div>
@@ -67,7 +67,7 @@ export default function RootLayout({
                             <nav className="flex flex-col gap-1 p-4">
                                 <Link
                                     href="/"
-                                    className="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-accent-foreground"
+                                    className="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-accent-foreground unselectable"
                                 >
                                     <FileText className="h-5 w-5"/>
                                     My Drive

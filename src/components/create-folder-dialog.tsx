@@ -27,11 +27,7 @@ export function CreateFolderDialog({ currentFolderId, currentPath, onFolderCreat
     const handleCreateFolder = async (folderName: string) => {
         const formData = new FormData();
         formData.append('folderName', folderName);
-
-        if (currentFolderId) {
-            formData.append('parentId', currentFolderId);
-        }
-
+        if (currentFolderId) formData.append('parentId', currentFolderId);
         formData.append('path', currentPath.join("/"));
 
         try {
@@ -39,7 +35,6 @@ export function CreateFolderDialog({ currentFolderId, currentPath, onFolderCreat
                 method: 'POST',
                 body: formData,
             });
-
             const data = await response.json();
 
             if (response.ok) {
@@ -47,11 +42,10 @@ export function CreateFolderDialog({ currentFolderId, currentPath, onFolderCreat
                 console.log('New folder created:', data);
             } else {
                 console.error('Failed to create folder:', data.error);
-                throw new Error(data.error || 'Failed to create folder');
+                return;
             }
         } catch (error) {
             console.error('Error creating folder:', error);
-            throw error;
         }
     }
 
@@ -74,9 +68,9 @@ export function CreateFolderDialog({ currentFolderId, currentPath, onFolderCreat
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline">Create folder</Button>
+                <Button className="cursor-pointer" variant="outline">Create folder</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] unselectable">
                 <form onSubmit={handleSubmit}>
                     <DialogHeader>
                         <DialogTitle>Create new folder</DialogTitle>
