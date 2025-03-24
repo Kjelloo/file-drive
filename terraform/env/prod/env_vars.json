@@ -1,0 +1,116 @@
+[
+  {
+    "key": "POSTGRES_URL",
+    "value": "${var.postgres_url}",
+    "target": [
+      "production"
+    ],
+    "sensitive": true
+  },
+  {
+    "key": "POSTGRES_URL",
+    "value": "${var.postgres_url_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": true
+  },
+  {
+    "key": "S3_USER",
+    "value": "${var.s3_user}",
+    "target": [
+      "production"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "S3_USER",
+    "value": "${var.s3_user_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "S3_PATH",
+    "value": "${var.s3_path}",
+    "target": [
+      "production"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "S3_PATH",
+    "value": "${var.s3_path_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "S3_BUCKET_NAME",
+    "value": "${var.s3_bucket_name}",
+    "target": [
+      "production"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "S3_BUCKET_NAME",
+    "value": "${var.s3_bucket_name_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "CLERK_SECRET_KEY",
+    "value": "${var.clerk_secret_key}",
+    "target": [
+      "production"
+    ],
+    "sensitive": true
+  },
+  {
+    "key": "CLERK_SECRET_KEY",
+    "value": "${var.clerk_secret_key_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": true
+  },
+  {
+    "key": "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "value": "${var.next_public_clerk_publishable_key}",
+    "target": [
+      "production"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "value": "${var.next_public_clerk_publishable_key_dev}",
+    "target": [
+      "preview"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "NEXT_PUBLIC_CLERK_SIGN_IN_URL",
+    "value": "${var.next_public_clerk_sign_in_url}",
+    "target": [
+      "production",
+      "preview"
+    ],
+    "sensitive": false
+  },
+  {
+    "key": "NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL",
+    "value": "${var.next_public_clerk_sign_in_fallback_redirect_url}",
+    "target": [
+      "production",
+      "preview"
+    ],
+    "sensitive": false
+  }
+]

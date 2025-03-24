@@ -1,6 +1,6 @@
 variable "environment" {
   type = string
-  default = "prod"
+  default = "production"
 }
 
 variable "s3_user" {
@@ -26,11 +26,6 @@ variable "vercel_project_name" {
 variable "vercel_domain" {
   type = string
   default = "drive.schoke.dk"
-}
-
-variable "github_repo" {
-  type = string
-  default = "kjelloo/file-drive"
 }
 
 variable "postgres_url" {

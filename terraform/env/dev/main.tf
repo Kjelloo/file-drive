@@ -18,6 +18,5 @@ module "platform" {
 
   // Vercel
   vercel_project_name = "schoke-drive"
-  github_repo = "kjelloo/file-drive"
-  vercel_domain = "drive.schoke.dk"
+  vercel_domain = "dev.drive.schoke.dk"
 }
