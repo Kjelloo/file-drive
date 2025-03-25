@@ -1,6 +1,6 @@
 module "platform" {
   source = "../../module/"
-  environment = ["production", "development", "preview"]
+  environment = ["production"]
   main_branch = "dev"
 
   // S3

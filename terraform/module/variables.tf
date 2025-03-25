@@ -6,7 +6,6 @@ variable "environment" {
 variable "main_branch" {
   type      = string
   default   = "dev"
-  sensitive = false
 }
 
 variable "s3_user" {

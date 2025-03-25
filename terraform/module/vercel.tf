@@ -83,6 +83,6 @@ resource "vercel_project_environment_variable" "drive" {
 }
 
 resource "vercel_project_domain" "drive" {
-  project_id = vercel_project.drive[0].id
+  project_id = vercel_project.drive.id
   domain     = var.vercel_domain
 }
