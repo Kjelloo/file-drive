@@ -104,6 +104,6 @@ resource "vercel_project_domain" "drive" {
 }
 
 output "vercel_project_id" {
-  value       = vercel_project.drive.id
+  value       = vercel_project.drive[0].id
   description = "The ID of the Vercel project."
 }
