@@ -1,6 +1,7 @@
 module "platform" {
   source = "../../module/"
-  environment = ["development", "preview"]
+  environment = ["production"]
+  main_branch = "dev"
 
   // S3
   s3_user = "s3-dev"
@@ -15,8 +16,9 @@ module "platform" {
   next_public_clerk_publishable_key = var.next_public_clerk_publishable_key // Set by terraform cloud
   next_public_clerk_sign_in_url = "/sign-in"
   next_public_clerk_sign_in_fallback_redirect_url = "/"
+  next_public_clerk_sign_up_fallback_redirect_url = "/"
 
   // Vercel
-  vercel_project_name = "schoke-drive"
+  vercel_project_name = "schoke-drive-dev"
   vercel_domain = "dev.drive.schoke.dk"
 }

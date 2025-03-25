@@ -3,6 +3,11 @@ variable "environment" {
   default = ["development", "preview"]
 }
 
+variable "main_branch" {
+  type      = string
+  default   = "dev"
+}
+
 variable "s3_user" {
   type = string
   default = "s3-dev"
@@ -51,6 +56,11 @@ variable "next_public_clerk_sign_in_url" {
 }
 
 variable "next_public_clerk_sign_in_fallback_redirect_url" {
+  type = string
+  default = "/"
+}
+
+variable "next_public_clerk_sign_up_fallback_redirect_url" {
   type = string
   default = "/"
 }

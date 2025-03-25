@@ -3,3 +3,5 @@ provider "aws" {
 }
 
 provider "vercel" {}
+
+provider "terraform" {}
