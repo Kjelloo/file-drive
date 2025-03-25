@@ -52,6 +52,19 @@ locals {
   ]
 }
 
+// Import vercel project id
+
+data "terraform_remote_state" "vercel" {
+  backend = "remote"
+
+  config = {
+    organization = "schoke"
+    workspaces = {
+      name = "file-drive-dev"
+    }
+  }
+}
+
 resource "vercel_project" "drive" {
   name      = var.vercel_project_name
   framework = "nextjs"
