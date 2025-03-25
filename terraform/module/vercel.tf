@@ -63,7 +63,7 @@ resource "vercel_project" "drive" {
   framework = "nextjs"
   serverless_function_region = "fra1"
 
-  ignore_command = "[\"$VERCEL_ENV\" != production ]"
+  ignore_command = "if [ \"$VERCEL_ENV\" == \"production\" ]; then exit 1; else exit 0; fi"
 
   git_repository = {
     type = "github"
