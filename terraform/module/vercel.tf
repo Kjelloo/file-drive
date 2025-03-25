@@ -72,6 +72,7 @@ data "terraform_remote_state" "vercel" {
 }
 
 resource "vercel_project" "drive" {
+  count     = var.environment[0] == ["development"] || var.environment[0] == ["preview"] ? 1 : 0
   name      = var.vercel_project_name
   framework = "nextjs"
   serverless_function_region = "fra1"
@@ -90,7 +91,7 @@ resource "vercel_project" "drive" {
 resource "vercel_project_environment_variable" "drive" {
   for_each = { for idx, env in local.env_vars : idx => env }
 
-  project_id  = vercel_project.drive.id
+  project_id  = data.terraform_remote_state.vercel.outputs.vercel_project_id
   key         = each.value.key
   value       = each.value.value
   target      = each.value.target
@@ -98,7 +99,7 @@ resource "vercel_project_environment_variable" "drive" {
 }
 
 resource "vercel_project_domain" "drive" {
-  project_id = vercel_project.drive.id
+  project_id = data.terraform_remote_state.vercel.outputs.vercel_project_id
   domain     = var.vercel_domain
 }
 
