@@ -58,40 +58,24 @@ locals {
   ]
 }
 
-// Import vercel project id
-
-data "terraform_remote_state" "vercel" {
-  backend = "remote"
-
-  config = {
-    organization = "schoke"
-    workspaces = {
-      name = "file-drive-dev"
-    }
-  }
-}
-
 resource "vercel_project" "drive" {
-  count     = var.environment[0] == ["development"] || var.environment[0] == ["preview"] ? 1 : 0
   name      = var.vercel_project_name
   framework = "nextjs"
   serverless_function_region = "fra1"
 
+  ignore_command = "[\"$VERCEL_ENV\" != production ]"
+
   git_repository = {
     type = "github"
     repo = "Kjelloo/file-drive"
-  }
-
-  lifecycle {
-    prevent_destroy = true
-    ignore_changes = all
+    production_branch = var.main_branch
   }
 }
 
 resource "vercel_project_environment_variable" "drive" {
   for_each = { for idx, env in local.env_vars : idx => env }
 
-  project_id  = data.terraform_remote_state.vercel.outputs.vercel_project_id
+  project_id  = vercel_project.drive.id
   key         = each.value.key
   value       = each.value.value
   target      = each.value.target
@@ -99,11 +83,6 @@ resource "vercel_project_environment_variable" "drive" {
 }
 
 resource "vercel_project_domain" "drive" {
-  project_id = data.terraform_remote_state.vercel.outputs.vercel_project_id
+  project_id = vercel_project.drive[0].id
   domain     = var.vercel_domain
-}
-
-output "vercel_project_id" {
-  value       = vercel_project.drive[0].id
-  description = "The ID of the Vercel project."
 }

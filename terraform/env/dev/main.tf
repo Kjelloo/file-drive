@@ -1,6 +1,7 @@
 module "platform" {
   source = "../../module/"
-  environment = ["development", "preview"]
+  environment = ["production", "development", "preview"]
+  main_branch = "dev"
 
   // S3
   s3_user = "s3-dev"
@@ -18,6 +19,6 @@ module "platform" {
   next_public_clerk_sign_up_fallback_redirect_url = "/"
 
   // Vercel
-  vercel_project_name = "schoke-drive"
+  vercel_project_name = "schoke-drive-dev"
   vercel_domain = "dev.drive.schoke.dk"
 }

@@ -3,6 +3,11 @@ variable "environment" {
   default = ["production"]
 }
 
+variable "main_branch" {
+  type      = string
+  default   = "main"
+}
+
 variable "s3_user" {
   type = string
   default = "s3-prod"
