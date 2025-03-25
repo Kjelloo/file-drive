@@ -54,6 +54,12 @@ locals {
       value     = var.next_public_clerk_sign_up_fallback_redirect_url
       target    = var.environment
       sensitive = false
+    },
+    {
+      key = "VERCEL_ENV"
+      value = var.environment[0]
+      target = ["production"]
+      sensitive = false
     }
   ]
 }
