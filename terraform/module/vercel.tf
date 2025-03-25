@@ -81,8 +81,3 @@ resource "vercel_project_environment_variable" "drive" {
   target      = each.value.target
   sensitive   = each.value.sensitive
 }
-
-resource "vercel_project_domain" "drive" {
-  project_id = vercel_project.drive.id
-  domain     = var.vercel_domain
-}
