@@ -54,3 +54,8 @@ variable "next_public_clerk_sign_in_fallback_redirect_url" {
   type = string
   default = "/"
 }
+
+variable "next_public_clerk_sign_up_fallback_redirect_url" {
+  type = string
+  default = "/"
+}

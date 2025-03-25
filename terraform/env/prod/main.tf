@@ -15,6 +15,7 @@ module "platform" {
   next_public_clerk_publishable_key = var.next_public_clerk_publishable_key
   next_public_clerk_sign_in_url = "/sign-in"
   next_public_clerk_sign_in_fallback_redirect_url = "/"
+  next_public_clerk_sign_up_fallback_redirect_url = "/"
 
   // Vercel
   vercel_project_name = "schoke-drive"

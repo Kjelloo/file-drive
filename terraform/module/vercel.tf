@@ -48,6 +48,12 @@ locals {
       value     = var.next_public_clerk_sign_in_fallback_redirect_url
       target    = var.environment
       sensitive = false
+    },
+    {
+      key       = "NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL"
+      value     = var.next_public_clerk_sign_up_fallback_redirect_url
+      target    = var.environment
+      sensitive = false
     }
   ]
 }
