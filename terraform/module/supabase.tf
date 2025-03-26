@@ -17,5 +17,5 @@ data "supabase_pooler" "drive" {
 }
 
 output "supabase_pooler_url" {
-  value = data.supabase_pooler.drive.url
+  value = [ for pooler in data.supabase_pooler.drive : pooler.url ]
 }
