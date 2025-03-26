@@ -1,5 +1,4 @@
 locals {
-  # Define environment variables that adapt based on current workspace
   env_vars = [
     {
       key       = "POSTGRES_URL"
@@ -69,7 +68,10 @@ resource "vercel_project" "drive" {
   framework = "nextjs"
   serverless_function_region = "fra1"
 
+  // Only deploy on production branch
   ignore_command = "if [ \"$VERCEL_ENV\" == \"production\" ]; then exit 1; else exit 0; fi"
+
+  auto_assign_custom_domains = false
 
   git_repository = {
     type = "github"

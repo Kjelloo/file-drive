@@ -3,6 +3,8 @@ module "platform" {
   environment = ["production"]
   main_branch = "main"
 
+  supabase_access_token = var.supabase_access_token
+
   // S3
   s3_user = "s3-prod"
   s3_path = "/terraform/prod/s3/"

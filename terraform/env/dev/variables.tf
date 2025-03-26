@@ -8,6 +8,12 @@ variable "main_branch" {
   default   = "dev"
 }
 
+variable "supabase_access_token" {
+  type = string
+  default = "default"
+  sensitive = true
+}
+
 variable "s3_user" {
   type = string
   default = "s3-dev"

@@ -8,6 +8,16 @@ variable "main_branch" {
   default   = "dev"
 }
 
+variable "supabase_name" {
+  type = string
+  default = "schoke-drive-dev"
+}
+
+variable "supabase_password" {
+  type = string
+  default = "default"
+}
+
 variable "s3_user" {
   type = string
   default = "s3-dev"
