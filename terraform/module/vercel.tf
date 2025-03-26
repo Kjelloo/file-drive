@@ -2,7 +2,7 @@ locals {
   env_vars = [
     {
       key       = "POSTGRES_URL"
-      value     = data.supabase_pooler.drive.url[0]
+      value     = var.postgres_url
       target    = var.environment
       sensitive = false
     },

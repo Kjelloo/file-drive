@@ -15,3 +15,7 @@ resource "supabase_project" "drive" {
 data "supabase_pooler" "drive" {
   project_ref = supabase_project.drive.id
 }
+
+output "supabase_pooler_url" {
+  value = data.supabase_pooler.drive.url
+}
