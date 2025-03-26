@@ -10,6 +10,7 @@ module "platform" {
 
   // Supabase
   postgres_url = var.postgres_url // Set by terraform cloud
+  supabase_password = var.supabase_password // Set by terraform cloud
 
   // Clerk
   clerk_secret_key = var.clerk_secret_key // Set by terraform cloud
@@ -25,4 +26,5 @@ module "platform" {
 
 output "supabase_url" {
   value = module.platform.supabase_pooler_url
+  sensitive = true
 }

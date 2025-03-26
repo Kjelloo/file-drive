@@ -14,6 +14,11 @@ variable "supabase_access_token" {
   sensitive = true
 }
 
+variable "supabase_password" {
+  type = string
+  default = "default"
+}
+
 variable "s3_user" {
   type = string
   default = "s3-dev"
