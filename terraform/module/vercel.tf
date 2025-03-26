@@ -1,12 +1,6 @@
 locals {
   env_vars = [
     {
-      key       = "POSTGRES_URL"
-      value     = var.postgres_url
-      target    = var.environment
-      sensitive = false
-    },
-    {
       key       = "S3_USER"
       value     = var.s3_user
       target    = var.environment
@@ -57,15 +51,15 @@ locals {
     {
       key       = "VERCEL_ENV"
       value     = var.environment[0]
-      target = ["production"]
+      target    = ["production"]
       sensitive = false
     }
   ]
 }
 
 resource "vercel_project" "drive" {
-  name      = var.vercel_project_name
-  framework = "nextjs"
+  name                       = var.vercel_project_name
+  framework                  = "nextjs"
   serverless_function_region = "fra1"
 
   // Only deploy on production branch
@@ -86,7 +80,7 @@ resource "vercel_project" "drive" {
 }
 
 resource "vercel_project_environment_variable" "drive" {
-  for_each = {for idx, env in local.env_vars : idx => env}
+  for_each = { for idx, env in local.env_vars : idx => env }
 
   project_id = vercel_project.drive.id
   key        = each.value.key
@@ -98,6 +92,14 @@ resource "vercel_project_environment_variable" "drive" {
     vercel_project.drive,
     aws_s3_bucket.files
   ]
+}
+
+resource "vercel_project_environment_variable" "postgres" {
+  project_id = vercel_project.drive.id
+  key        = "POSTGRES_URL"
+  target     = var.environment
+  value      = replace(values(data.supabase_pooler.drive.url)[0], "[YOUR-PASSWORD]", var.supabase_password)
+  sensitive  = false
 }
 
 resource "vercel_project_domain" "drive" {
