@@ -17,9 +17,5 @@ data "supabase_pooler" "drive" {
 }
 
 output "supabase_pooler_url" {
-  value = data.supabase_pooler.drive.url
-}
-
-output "supabase_project_ref" {
-  value = supabase_project.drive.id
+  value = replace(values(data.supabase_pooler.drive.url)[0], "[YOUR-PASSWORD]", var.supabase_password)
 }

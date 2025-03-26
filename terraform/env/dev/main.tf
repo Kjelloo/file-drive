@@ -23,10 +23,6 @@ module "platform" {
   vercel_domain = "dev.drive.schoke.dk"
 }
 
-output "supabase_pooler_url" {
+output "supabase_url" {
   value = module.platform.supabase_pooler_url
-}
-
-output "supabase_project_ref" {
-  value = module.platform.supabase_project_ref
 }
