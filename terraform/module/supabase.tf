@@ -17,5 +17,9 @@ data "supabase_pooler" "drive" {
 }
 
 output "supabase_pooler_url" {
-  value = data.supabase_pooler.drive
+  value = data.supabase_pooler.drive.url
+}
+
+output "supabase_project_ref" {
+  value = supabase_project.drive.id
 }
