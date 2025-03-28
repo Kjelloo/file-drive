@@ -65,8 +65,6 @@ resource "vercel_project" "drive" {
   // Only deploy on production branch
   ignore_command = "if [ \"$VERCEL_ENV\" == \"production\" ]; then exit 1; else exit 0; fi"
 
-  auto_assign_custom_domains = false
-
   git_repository = {
     type              = "github"
     repo              = "Kjelloo/file-drive"
