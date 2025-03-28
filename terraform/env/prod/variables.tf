@@ -44,12 +44,6 @@ variable "vercel_domain" {
   default = "drive.schoke.dk"
 }
 
-variable "postgres_url" {
-  type      = string
-  sensitive = true
-  default   = "postgres://postgres:password@localhost:5432/postgres"
-}
-
 variable "clerk_secret_key" {
   type      = string
   sensitive = true

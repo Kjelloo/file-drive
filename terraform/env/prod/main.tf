@@ -1,15 +1,13 @@
 module "platform" {
-  source      = "../../module/"
-  environment = ["production"]
-  main_branch = "main"
+  source         = "../../module/"
+  environment    = ["production"]
+  default_branch = "main"
 
   // S3
   s3_user        = "s3-prod"
   s3_path        = "/terraform/prod/s3/"
   s3_bucket_name = "schoke-drive-prod"
 
-  // Supabase
-  postgres_url      = var.postgres_url      // Set by terraform cloud
   supabase_password = var.supabase_password // Set by terraform cloud
 
   // Clerk

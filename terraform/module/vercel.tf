@@ -70,7 +70,7 @@ resource "vercel_project" "drive" {
   git_repository = {
     type              = "github"
     repo              = "Kjelloo/file-drive"
-    production_branch = var.main_branch
+    production_branch = var.default_branch
   }
 
   depends_on = [

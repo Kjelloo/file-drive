@@ -3,7 +3,7 @@ variable "environment" {
   default = ["development", "preview"]
 }
 
-variable "main_branch" {
+variable "default_branch" {
   type    = string
   default = "dev"
 }
@@ -41,12 +41,6 @@ variable "vercel_project_name" {
 variable "vercel_domain" {
   type    = string
   default = "dev.drive.schoke.dk"
-}
-
-variable "postgres_url" {
-  type      = string
-  sensitive = true
-  default   = "postgres://postgres:password@localhost:5432/postgres"
 }
 
 variable "clerk_secret_key" {
