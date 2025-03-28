@@ -1,66 +1,71 @@
 variable "environment" {
-  type = list(string)
+  type    = list(string)
   default = ["development", "preview"]
 }
 
-variable "main_branch" {
+variable "default_branch" {
+  type    = string
+  default = "dev"
+}
+
+variable "supabase_access_token" {
   type      = string
-  default   = "dev"
+  default   = "default"
+  sensitive = true
+}
+
+variable "supabase_password" {
+  type    = string
+  default = "default"
 }
 
 variable "s3_user" {
-  type = string
+  type    = string
   default = "s3-dev"
 }
 
 variable "s3_path" {
-  type = string
+  type    = string
   default = "/terraform/dev/s3/"
 }
 
 variable "s3_bucket_name" {
-  type = string
+  type    = string
   default = "schoke-drive-dev"
 }
 
 variable "vercel_project_name" {
-  type = string
+  type    = string
   default = "schoke-drive"
 }
 
 variable "vercel_domain" {
-  type = string
+  type    = string
   default = "dev.drive.schoke.dk"
 }
 
-variable "postgres_url" {
-  type = string
-  sensitive = true
-  default = "postgres://postgres:password@localhost:5432/postgres"
-}
-
 variable "clerk_secret_key" {
-  type = string
+  type      = string
   sensitive = true
-  default = "default"
+  default   = "default"
 }
 
 variable "next_public_clerk_publishable_key" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "next_public_clerk_sign_in_url" {
-  type = string
+  type    = string
   default = "/sign-in"
 }
 
 variable "next_public_clerk_sign_in_fallback_redirect_url" {
-  type = string
+  type    = string
   default = "/"
 }
 
 variable "next_public_clerk_sign_up_fallback_redirect_url" {
-  type = string
+  type    = string
   default = "/"
 }

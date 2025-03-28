@@ -1,12 +1,5 @@
 locals {
-  # Define environment variables that adapt based on current workspace
   env_vars = [
-    {
-      key       = "POSTGRES_URL"
-      value     = var.postgres_url
-      target    = var.environment
-      sensitive = false
-    },
     {
       key       = "S3_USER"
       value     = var.s3_user
@@ -56,39 +49,63 @@ locals {
       sensitive = false
     },
     {
-      key = "VERCEL_ENV"
-      value = var.environment[0]
-      target = ["production"]
+      key       = "VERCEL_ENV"
+      value     = var.environment[0]
+      target    = ["production"]
       sensitive = false
     }
   ]
 }
 
 resource "vercel_project" "drive" {
-  name      = var.vercel_project_name
-  framework = "nextjs"
+  name                       = var.vercel_project_name
+  framework                  = "nextjs"
   serverless_function_region = "fra1"
 
+  // Only deploy on production branch
   ignore_command = "if [ \"$VERCEL_ENV\" == \"production\" ]; then exit 1; else exit 0; fi"
 
   git_repository = {
-    type = "github"
-    repo = "Kjelloo/file-drive"
-    production_branch = var.main_branch
+    type              = "github"
+    repo              = "Kjelloo/file-drive"
+    production_branch = var.default_branch
   }
+
+  depends_on = [
+    supabase_project.drive,
+    aws_s3_bucket.files
+  ]
 }
 
 resource "vercel_project_environment_variable" "drive" {
   for_each = { for idx, env in local.env_vars : idx => env }
 
-  project_id  = vercel_project.drive.id
-  key         = each.value.key
-  value       = each.value.value
-  target      = each.value.target
-  sensitive   = each.value.sensitive
+  project_id = vercel_project.drive.id
+  key        = each.value.key
+  value      = each.value.value
+  target     = each.value.target
+  sensitive  = each.value.sensitive
+
+  depends_on = [
+    vercel_project.drive,
+    aws_s3_bucket.files
+  ]
+}
+
+resource "vercel_project_environment_variable" "postgres" {
+  project_id = vercel_project.drive.id
+  key        = "POSTGRES_URL"
+  target     = var.environment
+  value      = "${replace(replace(replace(values(data.supabase_pooler.drive.url)[0], "[YOUR-PASSWORD]", var.supabase_password), ":6543", ":5432"), "postgresql", "postgres")}?sslmode=require&supa=base-pooler.x"
+  sensitive  = false
 }
 
 resource "vercel_project_domain" "drive" {
   project_id = vercel_project.drive.id
   domain     = var.vercel_domain
+
+  depends_on = [
+    vercel_project.drive,
+    aws_s3_bucket.files
+  ]
 }
