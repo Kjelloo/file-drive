@@ -3,9 +3,14 @@ variable "environment" {
   default = ["production"]
 }
 
-variable "main_branch" {
+variable "default_branch" {
   type    = string
   default = "main"
+}
+
+variable "supabase_name" {
+  type    = string
+  default = "schoke-drive"
 }
 
 variable "supabase_access_token" {
