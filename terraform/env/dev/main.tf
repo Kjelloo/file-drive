@@ -9,6 +9,7 @@ module "platform" {
   s3_bucket_name = "schoke-drive-dev"
 
   supabase_password = var.supabase_password // Set by terraform cloud
+  supabase_name     = "schoke-drive-dev"
 
   // Clerk
   clerk_secret_key                                = var.clerk_secret_key                  // Set by terraform cloud

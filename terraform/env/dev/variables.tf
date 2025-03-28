@@ -8,6 +8,11 @@ variable "default_branch" {
   default = "dev"
 }
 
+variable "supabase_name" {
+  type    = string
+  default = "schoke-drive-dev"
+}
+
 variable "supabase_access_token" {
   type      = string
   default   = "default"
