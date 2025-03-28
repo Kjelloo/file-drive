@@ -98,7 +98,7 @@ resource "vercel_project_environment_variable" "postgres" {
   project_id = vercel_project.drive.id
   key        = "POSTGRES_URL"
   target     = var.environment
-  value      = replace(replace(values(data.supabase_pooler.drive.url)[0], "[YOUR-PASSWORD]", var.supabase_password), ":6543", ":5432")
+  value      = "${replace(replace(values(data.supabase_pooler.drive.url)[0], "[YOUR-PASSWORD]", var.supabase_password), ":6543", ":5432")}?sslmode=require&supa=base-pooler.x"
   sensitive  = false
 }
 
