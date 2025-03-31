@@ -33,3 +33,14 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
     ]
   })
 }
+
+resource "aws_s3_bucket_cors_configuration" "s3" {
+    bucket = aws_s3_bucket.files.id
+
+    cors_rule {
+        allowed_methods = ["*"]
+        allowed_origins = [vercel_project_domain]
+        allowed_headers = ["*"]
+        expose_headers  = ["ETag"]
+    }
+}
