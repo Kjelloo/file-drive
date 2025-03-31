@@ -38,7 +38,7 @@ resource "aws_s3_bucket_cors_configuration" "s3" {
     bucket = aws_s3_bucket.files.id
 
     cors_rule {
-        allowed_methods = ["*"]
+        allowed_methods = ["GET", "PUT", "POST", "DELETE"]
         allowed_origins = ["https://${var.vercel_domain}"]
         allowed_headers = ["*"]
         expose_headers  = ["ETag"]
