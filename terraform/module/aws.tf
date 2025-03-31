@@ -39,7 +39,7 @@ resource "aws_s3_bucket_cors_configuration" "s3" {
 
     cors_rule {
         allowed_methods = ["*"]
-        allowed_origins = ["https://${vercel_project_domain}"]
+        allowed_origins = ["https://${var.vercel_domain}"]
         allowed_headers = ["*"]
         expose_headers  = ["ETag"]
     }
